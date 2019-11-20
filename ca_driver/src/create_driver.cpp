@@ -74,7 +74,7 @@ CreateDriver::~CreateDriver()
 {
 }
 
-CallbackReturn CreateDriver::on_configure(const rclcpp_lifecycle::State &)
+rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn CreateDriver::on_configure(const rclcpp_lifecycle::State &)
 {
   using namespace std::chrono_literals;
 
@@ -151,10 +151,10 @@ CallbackReturn CreateDriver::on_configure(const rclcpp_lifecycle::State &)
 
   RCLCPP_INFO(get_logger(), "[CREATE] Ready.");
 
-  return CallbackReturn::SUCCESS;
+  return rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn::SUCCESS;
 }
 
-CallbackReturn CreateDriver::on_activate(const rclcpp_lifecycle::State &)
+rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn CreateDriver::on_activate(const rclcpp_lifecycle::State &)
 {
   if (!robot_->connect(dev_, baud_)) {
     RCLCPP_FATAL(get_logger(),
@@ -193,10 +193,10 @@ CallbackReturn CreateDriver::on_activate(const rclcpp_lifecycle::State &)
 
   timer_->reset();
 
-  return CallbackReturn::SUCCESS;
+  return rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn::SUCCESS;
 }
 
-CallbackReturn CreateDriver::on_deactivate(const rclcpp_lifecycle::State &)
+rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn CreateDriver::on_deactivate(const rclcpp_lifecycle::State &)
 {
   timer_->cancel();
 
@@ -223,10 +223,10 @@ CallbackReturn CreateDriver::on_deactivate(const rclcpp_lifecycle::State &)
   robot_->disconnect();
   RCLCPP_INFO(get_logger(), "[CREATE] Connection terminated.");
 
-  return CallbackReturn::SUCCESS;
+  return rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn::SUCCESS;
 }
 
-CallbackReturn CreateDriver::on_cleanup(const rclcpp_lifecycle::State &)
+rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn CreateDriver::on_cleanup(const rclcpp_lifecycle::State &)
 {
   timer_.reset();
 
@@ -264,7 +264,7 @@ CallbackReturn CreateDriver::on_cleanup(const rclcpp_lifecycle::State &)
 
   robot_.reset();
 
-  return CallbackReturn::SUCCESS;
+  return rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn::SUCCESS;
 }
 
 void CreateDriver::cmdVelCallback(const geometry_msgs::msg::Twist::SharedPtr msg)

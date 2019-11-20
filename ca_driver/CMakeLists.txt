@@ -60,7 +60,7 @@ install(TARGETS ${PROJECT_NAME}
 
 install(DIRECTORY include/${PROJECT_NAME}
   DESTINATION include/${PROJECT_NAME}
-  FILES_MATCHING PATTERN "*.h"
+  FILES_MATCHING PATTERN "*.hpp"
 )
 
 install(DIRECTORY config
