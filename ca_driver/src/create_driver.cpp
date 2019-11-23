@@ -12,7 +12,7 @@ CreateDriver::CreateDriver(const std::string & name)
 
   std::string robot_model_name;
   get_parameter_or<std::string>("dev", dev_, "/dev/ttyUSB0");
-  get_parameter_or<std::string>("robot_model", robot_model_name, "CREATE_2");
+  get_parameter_or<std::string>("robot_model", robot_model_name, "CREATE_1");
   get_parameter_or<std::string>("base_frame", base_frame_, "base_footprint");
   get_parameter_or<std::string>("odom_frame", odom_frame_, "odom");
   get_parameter_or<double>("latch_cmd_duration", latch_duration_, 0.2);
